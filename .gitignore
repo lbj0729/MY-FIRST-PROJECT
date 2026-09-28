@@ -1,0 +1,25 @@
+# 操作系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 依赖（纯静态站点无 node_modules，预留）
+node_modules/
+package-lock.json
+
+# 构建输出
+dist/
+build/
+
+# 本地测试脚本
+_serve.ps1
+
+# 日志
+*.log

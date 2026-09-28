@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>证书原件 · 柳背锦个人档案</title>
+<meta name="description" content="柳背锦的 AI 证书原件查看页：Datawhale 系列工程师认证与阿里云达摩院人工智能训练师证书。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/style.css?v=20260928">
+</head>
+
+<body class="cert-page">
+
+<!-- 全屏水波背景（WebGL 图片涟漪） -->
+<canvas id="wave-canvas" data-src="images/wave-bg.jpg" aria-hidden="true"></canvas>
+<div class="wave-overlay" aria-hidden="true"></div>
+
+<!-- 顶部条 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><span class="dot"></span>柳背锦 · CERTIFICATE</a>
+    <a class="cert-back" href="index.html#path">← 返回档案</a>
+  </div>
+</nav>
+
+<main class="wrap cert-main">
+  <p class="eyebrow" id="certEyebrow">CERTIFICATE / 证书原件</p>
+
+  <h1 class="cert-title" id="certTitle">证书加载中…</h1>
+  <p class="cert-issuer" id="certIssuer"></p>
+
+  <figure class="cert-figure">
+    <img id="certImg" src="" alt="证书原件照片">
+  </figure>
+
+  <div class="cert-actions">
+    <a class="btn btn-ghost" href="index.html#path">← 返回学习轨迹</a>
+    <a class="btn btn-solid" id="certOpen" href="#" target="_blank" rel="noopener">新窗口查看原图 ↗</a>
+  </div>
+</main>
+
+<footer class="footer wrap">
+  <div class="footer-inner">
+    <span class="footer-brand">柳背锦 · 个人档案</span>
+    <p class="footer-note">© <span data-year>2026</span> LIU BEIJIN · CERTIFICATE VIEWER</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* 证书索引：id → 图片路径 / 标题 / 颁发方（相对路径，兼容本地与 GitHub Pages） */
+  var CERTS = {
+    "llm-engineer":      { src: "images/cert-llm-engineer.jpg",        title: "LLM Engineer · 大语言模型工程师",        issuer: "Datawhale × 趋动云 VirtAI Cloud、HAAI 杭州市人工智能学会 · 2026" },
+    "finetuning":        { src: "images/cert-finetuning-engineer.jpg", title: "Fine-tuning Engineer · 微调工程师",      issuer: "Datawhale × 科大讯飞、讯飞星辰 · 2026" },
+    "agent-ant":         { src: "images/cert-agent-antgroup.jpg",      title: "Agent Engineer · 智能体工程师",          issuer: "Datawhale × 蚂蚁集团百宝箱 · 2026" },
+    "agent-modelscope":  { src: "images/cert-agent-modelscope.jpg",    title: "Agent Engineer · 智能体工程师",          issuer: "Datawhale × 魔搭社区 ModelScope · 2026" },
+    "llm-dev":           { src: "images/cert-llm-dev.jpg",             title: "LLM Development Engineer · 大模型开发工程师", issuer: "Datawhale × 浪潮信息 · 2026" },
+    "prompt":            { src: "images/cert-prompt-engineer.jpg",     title: "Prompt Engineer · 提示词工程师",         issuer: "Datawhale × 讯飞星火、讯飞开放平台 · 2026" },
+    "ai-coding":         { src: "images/cert-ai-coding.jpg",           title: "AI+编程能力认证证书",                    issuer: "Datawhale × 豆包 MarsCode · OPEN AI 通识课 · 2026.07.17" },
+    "trainer-advanced":  { src: "images/cert-ai-trainer-advanced.jpg", title: "人工智能训练师（高级）",                 issuer: "阿里云达摩院 · 机器智能技术事业部 · 2026.07.11 — 2027.07.11" },
+    "trainer-junior":    { src: "images/cert-ai-trainer-junior.jpg",   title: "人工智能训练师（初级）",                 issuer: "阿里云达摩院 · 机器智能技术事业部 · 2026.07.07 — 2027.07.07" }
+  };
+
+  var id = new URLSearchParams(location.search).get("c");
+  var data = CERTS[id];
+
+  if (!data) {
+    document.getElementById("certTitle").textContent = "未找到该证书";
+    document.getElementById("certIssuer").textContent = "链接可能已失效，请返回档案从证书墙重新进入。";
+    var fig = document.querySelector(".cert-figure");
+    if (fig) fig.style.display = "none";
+    var open = document.getElementById("certOpen");
+    if (open) open.style.display = "none";
+  } else {
+    document.title = data.title + " · 柳背锦个人档案";
+    document.getElementById("certTitle").textContent = data.title;
+    document.getElementById("certIssuer").textContent = data.issuer;
+    var img = document.getElementById("certImg");
+    img.src = data.src;
+    img.alt = data.title + " 证书原件";
+    document.getElementById("certOpen").href = data.src;
+  }
+
+  var y = document.querySelector("[data-year]");
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
+
+<!-- 全屏水波背景（WebGL 图片涟漪） -->
+<script src="js/wave.js?v=final7"></script>
+</body>
+</html>

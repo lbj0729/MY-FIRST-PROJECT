@@ -1,0 +1,10 @@
+# 统一换行符，避免 Windows/Linux 差异导致 git 检测"全文件修改"
+* text=auto eol=lf
+
+# 二进制文件不做换行符转换
+*.jpg binary
+*.png binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
